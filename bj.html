@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 건강검진 문진표(부트스트랩과 제이쿼리 연습)</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" 
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./bj.css/bj.css">
+    <script src="./bj.js/bj.js"></script>
+</head>
+<body>
+    <h1 class="text-bg-success p-3">내 건강검진 문진표</h1>
+    <hr>
+
+
+    <table class="table table-bordered border-dark">
+        <thead>
+          <tr>
+            <th scope="col" class="table-info">수검자 성명</th>
+            <td width="250"><input type="text" id="name" class="form-control"></td>
+            <th scope="col" class="table-info">주민등록번호</th>
+            <td width="250"><input type="text" id="regno" class="form-control"></td>
+            <th scope="col" class="table-info">보호자 연락처</th>
+            <td width="250"><input type="text" id="contact" class="form-control"></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="col" class="table-info">보호자 성명</th>
+            <td width="250"><input type="text" id="guardian_name" class="form-control"></td>
+            <th scope="col" class="table-info">수검자와의 관계</th>
+            <td width="250"><input type="text" id="relationship" class="form-control"></td>
+            <th scope="col" class="table-info">E-mail(메일)주소</th>
+            <td width="250"><input type="text" id="email" class="form-control"></td>
+          </tr>
+        </tbody>
+    </table>
+    <!-- 제출 버튼 -->
+    <button id="submitBtn" class="btn btn-primary">제출</button>
+    <p>▣ 귀하께서는 국민건강보험공단 또는 보건소에서 제공하는 건강 관련 정보 및 사업 안내를 메일 또는 우편 등으로 받아 보는 것에 동의하십니까? <br>
+      &nbsp;&nbsp;&nbsp;&nbsp;예 <input type="checkbox" class="answer" id="yes"> &nbsp;&nbsp;
+      아니오 <input type="checkbox" class="answer" id="no">
+    </p>
+    <p>▣ 정해진 검진횟수를 초과하여 검진을 받으시면 해당 검진비용은 부당여특급으로 환수됩니다.</p>
+    <form>
+        <div >
+            1. 나의 생년월일 : <input type="text" class="year"> 년 <input type="text" class="ma"> 월 <input type="text" width="2" class="day"> 일
+            &nbsp;&nbsp;&nbsp;&nbsp;2. 몸무게 : <input type="text" class="we"> kg (소수 첫째 자리까지)
+            <!-- 확인 버튼 -->
+            <button id="submitBtn">확인</button>
+            <!-- 체크 표시 -->
+            <span id="checkIcon" style="display:none; color: green;">✔</span><br>
+
+            <p>3. 내가 미숙아로 태어났습니까?
+            <br> 
+            &nbsp;&nbsp;&nbsp;&nbsp;예 <input type="checkbox" class="answer" id="yes1">(☞ 분만예정일은? <input type="text" class="year"> 년 <input type="text" class="ma"> 월 <input type="text" class="day"> 일)
+            &nbsp;&nbsp; 아니오 <input type="checkbox" class="answer" id="no1">
+            
+        <br><br> 4. 지금까지 실시한 예방접종에 표시항 주십시오.(해당란에 횟수를 표시하십시오.)</p>
+        <table class="table table-bordered border-dark">
+            <thead>
+              <tr>
+                <th scope="col" class="table-primary" width="100"></th>
+                <th scope="col" class="table-info"width="100">비씨지</th>
+                <th scope="col" class="table-info" width="100">B형 간염</th>
+                <th scope="col" class="table-info" width="100">디피티</th>
+                <th scope="col" class="table-info" width="100">소아마비(폴리오)</th>
+                <th scope="col" class="table-info" width="100">페구균</th>
+                <th scope="col" class="table-info" width="100">B형 헤모필투스균</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="col" class="table-primary">시행한 횟수</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+        </table>
+        </div>
+    </form>
+    <div style="display: flex; justify-content: space-between;">
+      <!-- 왼쪽: 시각 섹션 -->
+      <div class="w-50 p-3" style="flex: 1; text-align: left;">
+        <h3 class="id">☕ 시각</h3> 
+        <p class="id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예  <span style="color:blue; font-size: 20px;">① </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;아니오  <span style="color:blue; font-size: 20px;">②</span></p>
+    
+        <table class="table table-bordered border-dark">
+            <tbody>
+              <tr>
+                <th scope="col" class="table-warning" width="15%">1</th>
+                <td scope="col" width="50%" style = "text-align: left;">아이가 눈을 잘 맞춥니까?</td>
+                <td class="buts" scope="col" style="width: 25%; color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">2</th>
+                <td scope="col" style = "text-align: left;">눈동자의 위치가 이상합니까?<br>(안쪽으로 돌리거나 초점 없이 밖으로 향합니까?)</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">3</th>
+                <td scope="col" style = "text-align: left;">검은 눈동자(동공)가 혼작합니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">4</th>
+                <td scope="col" width="50%" style = "text-align: left;">가족 중에 눈과 관련된 유전질환을 가진 사람이 있습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    
+      <!-- 오른쪽: 청각 섹션 -->
+      <div class="w-50 p-3" style="flex: 1; text-align: left;">
+        <h3 class="id">☕ 청각</h3> 
+        <p class="id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예  <span style="color:blue; font-size: 20px;">① </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;아니오  <span style="color:blue; font-size: 20px;">②</span></p>
+    
+        <table class="table table-bordered border-dark">
+            <tbody>
+              <tr>
+                <th scope="col" class="table-warning" width="15%">1</th>
+                <td scope="col" width="50%" style = "text-align: left;">큰 소리에 잠에서 깨거나, 놀라거나, 표정 변화 등으로 반응합니까?</td>
+                <td class="buts" scope="col" style="width: 25%; color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">2</th>
+                <td scope="col" style = "text-align: left;">익숙한 목소리를 들으면 조용해지거나 동작을 멈추고 듣는 것처럼 보입니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">3</th>
+                <td scope="col" style = "text-align: left;">다양한 소리(쪽쪽거림, 껄껄거림, 높은 비명소리 등)를 낼 수 있습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">4</th>
+                <td scope="col" width="50%" style = "text-align: left;">출생 후 신생아 집중치료실(중환자실)에 5일 이상 입원한 적이 있습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">5</th>
+                <td scope="col" width="50%" style = "text-align: left;">신생이기에 청각선별검사(청력검사)를 받았습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">6</th>
+                <td scope="col" width="50%" style = "text-align: left;">위의 5번 문항이 '예'인 경우 청력검사 결과가 양호(야윽 통과 또는 이상 없음)라고 하였습니까?<br>
+                (5번 문항이 '아니오'인 경우 답하지 마세요.)</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+      
+      <!-- 왼쪽: 영아돌연사증후군 예방 교육 섹션 -->
+      <div class="w-50 p-3" style="flex: 1; text-align: left;">
+        <h3 class="id">☕ 영아돌연사증후군 예방 교육</h3> 
+        <p class="id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예  <span style="color:blue; font-size: 20px;">① </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;아니오  <span style="color:blue; font-size: 20px;">②</span></p>
+    
+        <table class="table table-bordered border-dark">
+            <tbody>
+              <tr>
+                <th scope="col" class="table-warning" width="15%">1</th>
+                <td scope="col" width="50%" style = "text-align: left;">아이를 엎드려 재웁니까?</td>
+                <td class="buts" scope="col" style="width: 25%; color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">2</th>
+                <td scope="col" style = "text-align: left;">아이와 침대나 요가 푹신합니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">3</th>
+                <td scope="col" style = "text-align: left;">아이가 부모와 같은 잠자리(침대, 요 등)에서 함께 잡니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">4</th>
+                <td scope="col" width="50%" style = "text-align: left;">아이가 깨어있을 때 배를 바닥에 대고 머리를 든 상태에서 놀 수 있도록 도와줍니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">5</th>
+                <td scope="col" width="50%" style = "text-align: left;">함께 거주하는 가족이나 아이가 자주 접촉하는 사람 중에 흡연자가 있습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">6</th>
+                <td scope="col" width="50%" style = "text-align: left;">집안에서(베란다 포함) 담배를 피우는 사람이 있습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">7</th>
+                <td scope="col" width="50%" style = "text-align: left;">아이가 탄 승용차 안에서 담배를 피우는 사람이 있습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    
+      <!-- 오른쪽: 안전사고 예방 교육 섹션 -->
+      <div class="w-50 p-3" style="flex: 1; text-align: left;">
+        <h3 class="id">☕ 안전사고 예방 교육</h3> 
+        <p class="id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;예  <span style="color:blue; font-size: 20px;">① </span>
+            &nbsp;&nbsp;&nbsp;&nbsp;아니오  <span style="color:blue; font-size: 20px;">②</span></p>
+    
+        <table class="table table-bordered border-dark">
+            <tbody>
+              <tr>
+                <th scope="col" class="table-warning" width="15%">1</th>
+                <td scope="col" width="50%" style = "text-align: left;">아이를 승용차에 태울 때 카시트를 어디서 설치합니까?<br>
+                ① 앞좌석 ② 뒷좌석 ③ 카시트나 승용차가 없는 경우</td>
+                <td class="buts" scope="col" style="width: 25%; color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                  <button class="num-btn" data-value="3">③</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning" width="15%">2</th>
+                <td scope="col" width="50%" style = "text-align: left;">아이가 자동차 뒤를 바라보도록 카시트를 설치합니까?<br>
+                ③ 카시트나 승용차가 없는 경우</td>
+                <td class="buts" scope="col" style="width: 25%; color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                  <button class="num-btn" data-value="3">③</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">3</th>
+                <td scope="col" style = "text-align: left;">어른 침대나 소파 위에 아이를 잠시라도 혼자 남겨둔 적이 있습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">4</th>
+                <td scope="col" style = "text-align: left;">목욕통, 욕조나 화장실 안에 아이를 잠시라도 혼자 둔 적이 있습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+              <tr>
+                <th scope="col" class="table-warning">5</th>
+                <td scope="col" width="50%" style = "text-align: left;">아이를 안은 채 뜨거운 음료를 마신 적이 있습니까?</td>
+                <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                  <button class="num-btn" data-value="1">①</button>
+                  <button class="num-btn" data-value="2">②</button>
+                </td>
+              </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3 class="id">☕ 영양교육</h3> 
+  
+      <table class="table table-bordered border-dark">
+          <tbody>
+            <tr>
+              <th scope="col" class="table-warning" width="15%">1<br>공동</th>
+              <td scope="col" width="50%" style = "text-align: left;">아이에게 어떤 것을 주로 먹입니까?<br>
+              ① 모유만(☞문항 2-4, 10) ② 분유만(☞문항5-10) ③ 모유와 분유 혼합(☞문항2-10)</td>
+              <td class="buts" scope="col" style="width: 25%; color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+                <button class="num-btn" data-value="3">③</button>  
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="table-warning" width="15%">2<br>공동</th>
+              <td scope="col" width="50%" style = "text-align: left;">모유수유를 언제까지 지속할 계획입니까?<br>
+                ① 6~11개월 ② 12~23개월   ③ 24개월 이상 ④ 잘 모르겠다</td>
+              <td class="buts" scope="col" style="width: 25%; color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+                <button class="num-btn" data-value="3">③</button>
+                <button class="num-btn" data-value="4">④</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="table-warning">3<br>모유</th>
+              <td scope="col" style = "text-align: left;">모유수유를 지속하는데 어떤 문제가 있습니까?<br>
+                ① 모유량    ② 모유수유 횟수   ③ 수유 방법   ④ 밤중 수유  ⑤ 기타   ⑥ 문제없음</td>
+              <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+                <button class="num-btn" data-value="3">③</button>
+                <button class="num-btn" data-value="4">④</button>
+                <button class="num-btn" data-value="5">⑤</button>
+                <button class="num-btn" data-value="6">⑥</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="table-warning">4<br>모유</th>
+              <td scope="col" style = "text-align: left;">다음 중 아이 엄마가 섬취하는 것이 있습니까?<br>
+                ① 카페인 음료   ② 술   ③ 담배   ④ 막을   ⑤ 해당없음</td>
+              <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+                <button class="num-btn" data-value="3">③</button>
+                <button class="num-btn" data-value="4">④</button>
+                <button class="num-btn" data-value="5">⑤</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="table-warning">5<br>분유</th>
+              <td scope="col" width="50%" style = "text-align: left;">분유는 하루에 얼마나 먹습니까?<br>
+                ① 500ml   ② 500~999ml   ③ 1,000ml 이상</td>
+              <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+                <button class="num-btn" data-value="3">③</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="table-warning">6<br>분유</th>
+              <td scope="col" width="50%" style = "text-align: left;">분유를 탈 때 끓여서 식힌 물을 사용합니까?<br>
+                ① 예   ② 아니오</td>
+              <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="table-warning">7<br>분유</th>
+              <td scope="col" width="50%" style = "text-align: left;">미리 타 둔 분유를 어떻게 데웁니까?<br>
+                ① 중탕   ② 전자레인지   ③ 기타</td>
+              <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+                <button class="num-btn" data-value="3">③</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="table-warning">8<br>분유</th>
+              <td scope="col" width="50%" style = "text-align: left;">현재 먹이고 있는 분유는 어떻게 선택했습니까?<br>
+                ① 보호자의 선택   ② 의사의 권고</td>
+              <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="table-warning">9<br>분유</th>
+              <td scope="col" width="50%" style = "text-align: left;">먹다 남은 분유는 어떻게 합니까?<br>
+                ① 보관했다가 다시 준다   ② 버린다</td>
+              <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="col" class="table-warning">10<br>공동</th>
+              <td scope="col" width="50%" style = "text-align: left;">이음기 보충식(이유식)을 언제 시작할 예정입니까?<br>
+                ① 4개월 전부터 이미 시작했다   ② 4~6개월  ③ 6개월 이후 ④ 잘 모르겠다</td>
+              <td class="buts" scope="col" style="color:black; font-size: 20px;">
+                <button class="num-btn" data-value="1">①</button>
+                <button class="num-btn" data-value="2">②</button>
+                <button class="num-btn" data-value="3">③</button>
+                <button class="num-btn" data-value="4">④</button>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+    <hr>
+
+    <p>
+      <label for="startDate">날짜 선택</label>
+      <input type="text" name="startDate" id="startDate">
+    </p>
+    <hr>
+    <div class="vic">
+        <iframe width="500" height="300" src="https://www.youtube.com/embed/1lkS0C_Lqs4?si=KXikUhfz0qeuMlwd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <br>
+    <div style="text-align: center;">
+      <img src="img/건국대학교.png" alt="건국대학교">
+      <img src="img/적정기술학회.png" alt="적정기술학회">
+      <p>적정기술학회"ICT.스마트" 부문& 건국대학교"ICT 창의 연구소" 한국-미얀마 국제망연결 , 컴퓨팅자원 관리, 공동연구(연구책임자 조승철)</p>
+    </div>
+</body>
+</html>
